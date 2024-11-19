@@ -1,0 +1,55 @@
+.New-Container {
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  display: flex;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.New-Line {
+  width: 7%;
+  height: 100%;
+  /* background-color: sandybrown; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 8%;
+}
+
+.New-Circle {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background-color: #ccd3e5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.New-Circle1 {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: #00247d;
+}
+
+.New-Content {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.New-Line1 {
+  width: 2.5%;
+  height: 100%;
+  background-color: #ccd3e5;
+  border-radius: 10px;
+}
+
+.New-img {
+  width: 95%;
+  height: 60%;
+  background-color: rgb(185, 185, 185);
+}
