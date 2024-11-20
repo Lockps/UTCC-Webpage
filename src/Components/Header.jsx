@@ -1,10 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./Header.css";
 import { ComponentContext } from "../context/ComponentContext";
+import { LoginContext } from "../context/LoginContext";
 
 const Header = () => {
   const { componentState, setComponentState } = useContext(ComponentContext);
   const [txt, settxt] = useState("");
+  const { isLogin } = useContext(LoginContext);
 
   useEffect(() => {
     switch (componentState) {
@@ -41,6 +43,7 @@ const Header = () => {
           {componentState === 1 ? "" : ` > ${txt}`}
         </span>
       </h1>
+      <div className="Header-name"> {isLogin? "23xxxxxxxx นาย หอการค้า รักมอ":""}</div>
     </div>
   );
 };

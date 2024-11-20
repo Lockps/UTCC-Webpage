@@ -54,25 +54,25 @@ const Navbar = () => {
             className="Nav-SideMenuItem"
             onClick={() => handleMenuItemClick(1)}
           >
-            Home
+           หน้าแรก
           </div>
           <div
             className="Nav-SideMenuItem"
             onClick={() => handleMenuItemClick(2)}
           >
-            About
+           โปรไฟล์และข้อมูล
           </div>
           <div
             className="Nav-SideMenuItem"
             onClick={() => handleMenuItemClick(3)}
           >
-            Services
+            ประเมินผู้สอน
           </div>
           <div
             className="Nav-SideMenuItem"
             onClick={() => handleMenuItemClick(4)}
           >
-            Contact
+            ตารางเรียน/สอบ
           </div>
         </div>
       </div>
