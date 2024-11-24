@@ -1,9 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./Header.css";
 import { ComponentContext } from "../context/ComponentContext";
+import { LoginContext } from "../context/LoginContext";
 
 const Header = () => {
   const { componentState, setComponentState } = useContext(ComponentContext);
+  const { isLogin } = useContext(LoginContext);
   const [txt, settxt] = useState("");
 
   useEffect(() => {
