@@ -9,8 +9,33 @@ const Login = () => {
   const { setLogin } = useContext(LoginContext);
 
   const handleLogin = () => {
-    alert("Email :  " + email + "\nPassword :  " + password);
-    setLogin(true);
+    const loginData = {
+      username: email,
+      password: password,
+    };
+
+    fetch("http://127.0.0.1:5000/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(loginData),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        if (data.token) {
+          localStorage.setItem("authToken", data.token);
+          setLogin(true);
+          alert("Login successful! Token stored in localStorage.");
+        } else {
+          alert("Login failed: " + data.error);
+        }
+      })
+      .catch((error) => {
+        console.error("Error during login:", error);
+        alert("An error occurred while logging in.");
+      });
   };
 
   return (

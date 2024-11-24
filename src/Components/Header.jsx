@@ -7,7 +7,32 @@ const Header = () => {
   const { componentState, setComponentState } = useContext(ComponentContext);
   const { isLogin } = useContext(LoginContext);
   const [txt, settxt] = useState("");
-  const { isLogin } = useContext(LoginContext);
+  const [data, setData] = useState(null); // Handle API data state
+  const [loading, setLoading] = useState(false); // Handle loading state
+
+  const get_data = () => {
+    if (isLogin) {
+      setLoading(true); // Start loading
+
+      fetch("http://127.0.0.1:5000/get_user", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
+        },
+        body: JSON.stringify({ userId: "someUserId" }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          setData(data); // Store fetched data
+          console.log(data);
+        })
+        .catch((error) => {
+          console.error("Error fetching user info:", error);
+        })
+        .finally(() => setLoading(false)); // Stop loading
+    }
+  };
 
   useEffect(() => {
     switch (componentState) {
@@ -27,7 +52,7 @@ const Header = () => {
         settxt("");
         break;
     }
-  }, [componentState]);
+  }, [componentState, isLogin]);
 
   return (
     <div className="Header-Container">
@@ -44,7 +69,20 @@ const Header = () => {
           {componentState === 1 ? "" : ` > ${txt}`}
         </span>
       </h1>
-      <div className="Header-name"> {isLogin? "23xxxxxxxx นาย หอการค้า รักมอ":""}</div>
+
+      <div className="Header-name">
+        {isLogin ? (
+          loading ? (
+            <span>กำลังโหลด...</span>
+          ) : data ? (
+            `ยินดีต้อนรับ, ${data.userName}`
+          ) : (
+            "ข้อมูลผู้ใช้ไม่พบ"
+          )
+        ) : (
+          "กรุณาล็อกอิน"
+        )}
+      </div>
     </div>
   );
 };

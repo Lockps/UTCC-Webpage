@@ -4,21 +4,19 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { FaRegMoon } from "react-icons/fa";
 import TH from "../assets/TH.png";
 import Logo from "../assets/Logo.jpg";
-import { ComponentContext } from "../context/ComponentContext"; // Import the ComponentContext
+import { ComponentContext } from "../context/ComponentContext";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { setComponentState } = useContext(ComponentContext); // Access setComponentState
+  const { setComponentState } = useContext(ComponentContext);
 
-  // Toggle the side menu visibility
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  // Handle menu item click and change the component state
   const handleMenuItemClick = (state) => {
-    setComponentState(state); // Change the component state based on the clicked item
-    setIsMenuOpen(false); // Optionally close the menu when an item is clicked
+    setComponentState(state);
+    setIsMenuOpen(false);
   };
 
   return (
@@ -54,13 +52,13 @@ const Navbar = () => {
             className="Nav-SideMenuItem"
             onClick={() => handleMenuItemClick(1)}
           >
-           หน้าแรก
+            หน้าแรก
           </div>
           <div
             className="Nav-SideMenuItem"
             onClick={() => handleMenuItemClick(2)}
           >
-           โปรไฟล์และข้อมูล
+            โปรไฟล์และข้อมูล
           </div>
           <div
             className="Nav-SideMenuItem"
