@@ -13,28 +13,25 @@ const Profile = () => {
   ];
 
   const content = [
-    { name: "asd", content: "asdasd" },
-    { name: "asdasd", content: "asdasdasd" },
-    { name: "asdasd", content: "asdasdasd" },
-    { name: "asdasd", content: "asdasdasd" },
-    { name: "asdasd", content: "asdasdasd" },
-    { name: "asdasd", content: "asdasdasd" },
-    { name: "asdasd", content: "asdasdasd" },
-    { name: "asdasd", content: "asdasdasd" },
-    { name: "asdasd", content: "asdasdasd" },
-    { name: "asdasd", content: "asdasdasd" },
-    { name: "asdasd", content: "asdasdasd" },
-    { name: "asdasd", content: "asdasdasd" },
-    { name: "asdasd", content: "asdasdasd" },
-    { name: "asdasd", content: "asdasdasd" },
-    { name: "asdasd", content: "asdasdasd" },
-    { name: "asdasd", content: "asdasdasd" },
-    { name: "asdasd", content: "asdasdasd" },
-    { name: "asdasd", content: "asdasdasd" },
-    { name: "asdasd", content: "asdasdasd" },
-    { name: "asdasd", content: "asdasdasd" },
-    { name: "asdasd", content: "asdasdasd" },
-    { name: "asdasd", content: "asdasdasd" },
+    { name: "รหัสนักศึกษา", content: "2xxxxxxxxxxxx" },
+    { name: "เลขที่บัตรประชาชน", content: "9-9999-99999-99-9" },
+    { name: "ชื่อ", content: "นาย หอการค้า รักมอ" },
+    { name: "ชื่ออังกฤษ", content: "Mr. Hokankha Rakmo" },
+    { name: "ตณะวิชา", content: "คณะวิศวกรรมศาสตร์" },
+    { name: "หลักสูตร", content: "วิศวกรรมคอมพิวเตอร์และปัญญาประดิษฐ์" },
+    { name: "วิชาโท", content: "อื่นๆ" },
+    { name: "ระดับการศึกษา", content: "ปริญญาตรี - ปกติ1" },
+    { name: "ชื่อปริญญา", content: "วิศวกรรมศาสตร์บัณฑิต วิศวกรรศาสตร์คอมพิวเตอร์และปัญญาประดิษฐ์" },
+    { name: "ปีการศึกษาแรกเข้า", content: "2566/1 (วันที่1 15/08/2566)" },
+    { name: "สถานภาพ", content: "กำลังศึกษา" },
+    { name: "วันที่จบ / ลาออก / พ้นสภาพ", content: "-" },
+    { name: "วันที่สภาอนุมัติ", content: "-" },
+    { name: "วิธีเข้า", content: "-" },
+    { name: "วุฒิก่อนเข้ารับการศึกษา", content: "มัธยมศึกษาตอนปลาย (4.00)" },
+    { name: "จบการศึกษาจาก", content: "โรงเรียนมัธยม" },
+    { name: "อ.ที่ปรึกษา", content: "อาจารย์ ดร.XXXX XXXXX" },
+    
+    
   ];
 
   return (
@@ -49,6 +46,7 @@ const Profile = () => {
         <div className="Profile-Content">
           <div className="Profile-Contenttxt">
             <h1>ระเบียบประวัติ</h1>
+            <li> ข้อมูลด้านการศึกษา</li>
             <div className="Profile-txt">
               {content.map((item) => {
                 return <Protxt name={item.name} data={item.content} />;

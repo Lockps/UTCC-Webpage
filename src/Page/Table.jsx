@@ -5,11 +5,11 @@ import Tableimg from "../assets/Table.png";
 
 const Table = () => {
   const data = [
-    { name: "asd", data: "asdasd" },
-    { name: "asdasd", data: "asdasd" },
-    { name: "asdasd", data: "asdasd" },
-    { name: "asdasd", data: "asdasd" },
-    { name: "asdasd", data: "asdasd" },
+    { name: "ชื่อ", data: "นาย หอการค้า รักมอ" },
+    { name: "สถานภาพ", data: "กำลังศึกษา" },
+    { name: "คณะ", data: "คณะวิศวกรรมศาสตร์" },
+    { name: "หลักสูตร", data: "วิศวกรรมคอมพิวเตอร์และปัญญาประดิษฐ์" },
+    { name: "อ.ที่ปรึกษา", data: "อาจารย์ ดร.XXXX XXXXX" },
   ];
   return (
     <div className="Table-Container">

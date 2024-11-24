@@ -7,6 +7,7 @@ const Header = () => {
   const { componentState, setComponentState } = useContext(ComponentContext);
   const { isLogin } = useContext(LoginContext);
   const [txt, settxt] = useState("");
+  const { isLogin } = useContext(LoginContext);
 
   useEffect(() => {
     switch (componentState) {
@@ -43,6 +44,7 @@ const Header = () => {
           {componentState === 1 ? "" : ` > ${txt}`}
         </span>
       </h1>
+      <div className="Header-name"> {isLogin? "23xxxxxxxx นาย หอการค้า รักมอ":""}</div>
     </div>
   );
 };
