@@ -74,6 +74,36 @@ const Navbar = () => {
           >
             ตารางเรียน/สอบ
           </div>
+          <div
+            className="Nav-SideMenuItem"
+            onClick={() => handleMenuItemClick(5)}
+          >
+            ภาระค่าใช้จ่าย/ทุน
+          </div>
+          <div
+            className="Nav-SideMenuItem"
+            onClick={() => handleMenuItemClick(6)}
+          >
+            ผลการศึกษา
+          </div>
+          <div
+            className="Nav-SideMenuItem"
+            onClick={() => handleMenuItemClick(7)}
+          >
+            ตรวจสอบจบ
+          </div>
+          <div
+            className="Nav-SideMenuItem"
+            onClick={() => handleMenuItemClick(8)}
+          >
+            คุ่มือ/แนวปฏิบัติ
+          </div>
+          <div
+            className="Nav-SideMenuItem"
+            onClick={() => handleMenuItemClick(9)}
+          >
+            เสนอความคิดเห็น
+          </div>
         </div>
       </div>
     </div>
