@@ -20,53 +20,6 @@ db_config = {
 }
 
 
-@app.route('/get_data', methods=['POST'])
-def get_data():
-    print("Get data")
-
-    # Get the request data (body)
-    data = request.get_json()
-
-    # Extract the token from the body
-    token = data.get('jwtToken')  # The key will be 'jwtToken'
-
-    if not token:
-        return jsonify({"error": "Token is required"}), 400
-
-    try:
-        # Decode the JWT token
-        payload = jwt.decode(token, SECRET_KEY, algorithms=['HS256'])
-
-        user_id = payload.get('sub')
-
-        if not user_id:
-            return jsonify({"error": "Invalid token, no user ID found"}), 400
-
-        conn = mysql.connector.connect(**db_config)
-        cursor = conn.cursor(dictionary=True)
-
-        cursor.execute(
-            "SELECT id, username, name, surname FROM User WHERE id = %s", (user_id,))
-        user = cursor.fetchone()
-
-        if user:
-            cursor.close()
-            conn.close()
-            print("User found:", user)
-            return jsonify(user), 200
-        else:
-            cursor.close()
-            conn.close()
-            return jsonify({"error": "User not found"}), 404
-
-    except jwt.ExpiredSignatureError:
-        return jsonify({"error": "Token has expired"}), 401
-    except jwt.InvalidTokenError:
-        return jsonify({"error": "Invalid token"}), 400
-    except mysql.connector.Error as err:
-        return jsonify({"error": f"Database error: {err}"}), 500
-
-
 @app.route('/login', methods=['POST'])
 def login():
     data = request.get_json()
@@ -85,8 +38,10 @@ def login():
 
         if user and user['password'] == data['password']:
             payload = {
-                'sub': user['id'],
+                'sub': str(user['id']),
                 'username': user['username'],
+                'name': user['name'],
+                'surname': user['surname'],
                 'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=1)
             }
             token = jwt.encode(payload, SECRET_KEY, algorithm='HS256')
@@ -109,5 +64,48 @@ def login():
         return jsonify({"error": f"Database error: {err}"}), 500
 
 
+@app.route('/profile', methods=['POST'])
+def profile():
+    data = request.get_json()
+    print(data, end="\n\n")
+    token = data.get('token').strip()
+    print(token)
+    if not token:
+        return jsonify({"error": "Token is missing"}), 400
+
+    try:
+        decoded_token = jwt.decode(token, SECRET_KEY, algorithms=[
+                                   'HS256'], options={"verify_exp": False})
+        user_id = decoded_token.get('sub')
+        print(user_id)
+
+        conn = mysql.connector.connect(**db_config)
+        cursor = conn.cursor(dictionary=True)
+
+        cursor.execute(
+            "SELECT * FROM StudentDetails WHERE Userid = %s", (user_id,))
+        user = cursor.fetchone()
+
+        cursor.close()
+        conn.close()
+
+        if user:
+            return jsonify({
+                "user": user
+            }), 200
+        else:
+            return jsonify({"error": "User not found"}), 404
+    except jwt.ExpiredSignatureError:
+        print("exp")
+        return jsonify({"error": "Token has expired"}), 401
+    except jwt.InvalidTokenError:
+        print("Invalid Token")
+        return jsonify({"error": "Invalid token"}), 401
+    except mysql.connector.Error as err:
+        print(f"Database error: {err}")
+        return jsonify({"error": "Database connection failed"}), 500
+
+
 if __name__ == '__main__':
+    CORS(app)
     app.run(debug=True)
