@@ -5,6 +5,8 @@ import { FaRegMoon } from "react-icons/fa";
 import TH from "../assets/TH.png";
 import Logo from "../assets/Logo.jpg";
 import { ComponentContext } from "../context/ComponentContext";
+import { CiLogout } from "react-icons/ci";
+import { LoginContext } from "../context/LoginContext";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -78,29 +80,16 @@ const Navbar = () => {
           >
             ภาระค่าใช้จ่าย/ทุน
           </div>
+
           <div
-            className="Nav-SideMenuItem"
-            onClick={() => handleMenuItemClick(6)}
+            className="Nav-SideMenuItem1"
+            onClick={() => {
+              localStorage.clear();
+              window.location.reload();
+            }}
           >
-            ผลการศึกษา
-          </div>
-          <div
-            className="Nav-SideMenuItem"
-            onClick={() => handleMenuItemClick(7)}
-          >
-            ตรวจสอบจบ
-          </div>
-          <div
-            className="Nav-SideMenuItem"
-            onClick={() => handleMenuItemClick(8)}
-          >
-            คุ่มือ/แนวปฏิบัติ
-          </div>
-          <div
-            className="Nav-SideMenuItem"
-            onClick={() => handleMenuItemClick(9)}
-          >
-            เสนอความคิดเห็น
+            <CiLogout />
+            <span>Log out</span>
           </div>
         </div>
       </div>

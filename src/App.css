@@ -5,12 +5,12 @@
   margin: 0px;
   font-family: "Kanit", sans-serif;
   font-weight: 400;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 .Main-Container {
   width: 100vw;
-  height: 100vh;
+  height: 120vh;
   background-color: #c2c2c2;
 }
 
@@ -45,4 +45,5 @@
 
 .Main-Select {
   height: 100%;
+  overflow: hidden;
 }

@@ -1,0 +1,53 @@
+.Qr-Container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.Qr-Border {
+  width: 95%;
+  height: 60vh;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.Qr-Line1 {
+  font-weight: 700;
+  margin-top: 2%;
+  margin-left: 2%;
+}
+
+.Qr-Line2 {
+  margin-left: 2%;
+  margin-top: 1.5%;
+  width: 15%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1%;
+}
+
+.Qr-Step1 th {
+  background-color: #323486;
+  color: white;
+}
+
+.Qr-FirstTable {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 3vh;
+}
+
+.Qr-Line3 {
+  margin: 3%;
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 15px;
+  width: 20%;
+}
+
+.Qr-1 {
+  width: 95%;
+  border: solid 1px;
+}

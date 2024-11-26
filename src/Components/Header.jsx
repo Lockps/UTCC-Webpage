@@ -7,34 +7,45 @@ const Header = () => {
   const { componentState, setComponentState } = useContext(ComponentContext);
   const { isLogin } = useContext(LoginContext);
   const [txt, settxt] = useState("");
-  const [data, setData] = useState(null); // Handle API data state
-  const [loading, setLoading] = useState(false); // Handle loading state
+  const [userData, setUserdata] = useState("");
+
+  const decodeJWT = (token) => {
+    try {
+      const base64Url = token.split(".")[1];
+      if (!base64Url) {
+        throw new Error("Invalid JWT format");
+      }
+
+      const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+      const jsonPayload = decodeURIComponent(
+        atob(base64)
+          .split("")
+          .map((c) => `%${("00" + c.charCodeAt(0).toString(16)).slice(-2)}`)
+          .join("")
+      );
+
+      return JSON.parse(jsonPayload);
+    } catch (error) {
+      console.error("Failed to decode JWT:", error.message);
+      return null;
+    }
+  };
 
   const get_data = () => {
-    if (isLogin) {
-      setLoading(true); // Start loading
-
-      fetch("http://127.0.0.1:5000/get_user", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
-        },
-        body: JSON.stringify({ userId: "someUserId" }),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          setData(data); // Store fetched data
-          console.log(data);
-        })
-        .catch((error) => {
-          console.error("Error fetching user info:", error);
-        })
-        .finally(() => setLoading(false)); // Stop loading
+    const token = localStorage.getItem("authToken");
+    if (token) {
+      const decodedData = decodeJWT(token);
+      console.log("Decoded JWT Payload:", decodedData);
+      setUserdata(decodedData);
+    } else {
+      console.warn("No token found in localStorage");
     }
   };
 
   useEffect(() => {
+    get_data();
+    console.log(componentState);
+
     switch (componentState) {
       case 1:
         settxt("หน้าแรก");
@@ -48,8 +59,13 @@ const Header = () => {
       case 4:
         settxt("ตารางเรียน / สอบ");
         break;
+      case 5:
+        settxt("ภาระค่าใช้จ่าย / ทุน");
+        break;
+      case 6:
+        settxt("ภาระค่าใช้จ่าย / ทุน > ชำระเงิน");
       default:
-        settxt("");
+        settxt("ภาระค่าใช้จ่าย / ทุน");
         break;
     }
   }, [componentState, isLogin]);
@@ -71,17 +87,9 @@ const Header = () => {
       </h1>
 
       <div className="Header-name">
-        {isLogin ? (
-          loading ? (
-            <span>กำลังโหลด...</span>
-          ) : data ? (
-            `ยินดีต้อนรับ, ${data.userName}`
-          ) : (
-            "ข้อมูลผู้ใช้ไม่พบ"
-          )
-        ) : (
-          "กรุณาล็อกอิน"
-        )}
+        {isLogin
+          ? userData.username + "  " + userData.name + "  " + userData.surname
+          : ""}
       </div>
     </div>
   );

@@ -27,7 +27,7 @@ const Login = () => {
         if (data.token) {
           localStorage.setItem("authToken", data.token);
           setLogin(true);
-          alert("Login successful! Token stored in localStorage.");
+          // alert("Login successful! Token stored in localStorage.");
         } else {
           alert("Login failed: " + data.error);
         }

@@ -114,3 +114,20 @@
 .Nav-SideMenuItem:hover {
   background-color: #c2c2c2;
 }
+
+.Nav-SideMenuItem1 {
+  margin-top: 40vh;
+  cursor: pointer;
+  padding: 10px 0;
+  color: red;
+  display: flex;
+  align-items: center;
+}
+
+.Nav-SideMenuItem1:hover {
+  background-color: #c2c2c2;
+}
+
+.Nav-SideMenuItem1 span {
+  margin-left: 10px;
+}

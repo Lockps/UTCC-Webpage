@@ -10,6 +10,8 @@ import Profile from "./Page/Profile";
 import Estimate from "./Page/Estimate";
 import Table from "./Page/Table";
 import Header from "./Components/Header";
+import Pay from "./Components/Pay";
+import Qr from "./Components/Qr";
 
 const App = () => {
   const [widget, setWidget] = useState(null);
@@ -38,6 +40,12 @@ const App = () => {
         break;
       case 4:
         setWidget(<Table />);
+        break;
+      case 5:
+        setWidget(<Pay />);
+        break;
+      case 6:
+        setWidget(<Qr />);
         break;
       default:
         setWidget(null);
