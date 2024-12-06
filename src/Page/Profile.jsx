@@ -40,6 +40,7 @@ const Profile = () => {
   useEffect(() => {
     getdata();
   }, []);
+
   const data = [
     { name: "เปลี่ยนรูปโปรไฟล์" },
     { name: "แก้ไขข้อมูล" },
